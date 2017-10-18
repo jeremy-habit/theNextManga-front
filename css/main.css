@@ -1,0 +1,29 @@
+@font-face {
+    font-family: obelix;
+    src: url('../fonts/obelixpro/ObelixPro-cyr.ttf');
+}
+
+.APP_font_obelix {
+    font-family: obelix;
+}
+
+input {
+    outline: none;
+}
+
+#searchBtn {
+    line-height: 37px;
+    outline: none;
+    cursor: pointer;
+}
+
+#footerPusher {
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin-bottom: -80px; /* 78 = footer height desktop screen */
+    padding-bottom: 80px;
+}
+
+.APP_clickable_row {
+    cursor: pointer;
+}

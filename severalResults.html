@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--
+            __,__
+   .--.  .-"     "-.  .--.
+  / .. \/  .-. .-.  \/ .. \
+ | |  '|  /   Y   \  |'  | |
+ | \   \  \ 0 | 0 /  /   / |
+  \ '- ,\.-"`` ``"-./, -' /
+   `'-' /_   ^ ^   _\ '-'`
+       |  \._   _./  |
+       \   \ `~` /   /
+        '._ '-=-' _.'
+           '~---~'
+-->
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="tp d3">
+    <meta name="author" content="Habit Jérémy">
+    <link rel="icon" type="image/x-icon" href=""/>
+
+    <title>Manga</title>
+
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/vendors/magic-monkey.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+
+<div id="footerPusher">
+
+    <!-- @@@ HEADER @@@ -->
+    <header class="row flex-x-center align-center">
+        <div class="cell-12 anim-fall">
+            <h1 class="margin-0-bottom txt-size-giant txt-size-big-s">
+                <a href="" title="Homepage" class="hover-color-peter-river transition">
+                    <span class="APP_font_obelix">the next manga</span>
+                    <span class="hide-s">
+                <span class="color-orange">?#@!</span>
+            </span>
+                </a>
+            </h1>
+        </div>
+        <div class="cell-8 c-10-xl c-12-l anim-fall">
+            <input class="width-60 width-50-m width-100-s padding border border-silver margin-15-top-xs"
+                   id="inputSearch" name="inputSearch" type="search" title="Type the name of a manga"
+                   placeholder="One Piece ..." autofocus/><!--
+        -->
+            <button id="searchBtn" title="Launch the research"
+                    class="margin-30-top-s border-none color-yang transition-3 bg-orange hover-bg-carrot padding-5 padding-15-right-left">
+                <span>Search</span>
+            </button>
+        </div>
+    </header>
+
+
+    <!-- @@@@@ MAIN @@@@@ -->
+
+    <main class="margin-auto container margin-50-top-bottom">
+
+
+        <!-- @@@@@ RESULT 1 @@@@@ -->
+
+        <div class="row flex-y-center flex-x-center hover-bg-clouds transition-3 border-bottom border-silver APP_clickable_row">
+            <div class="cell-2 c-12-m  txt-size-medium APP_font_obelix align-center">
+                <span class="color-orange">#</span>
+                <span>1</span>
+            </div>
+            <div class="cell-8 flex-item-order-2-m">
+                <h3 class="align-center-s">Naruto</h3>
+                <p>
+                    There is fighting at the high school due to a power struggle for control. The granddaughter of the
+                    chief director requests help from the Airin Dreamdo fighting style genius. Will he help? Or will he
+                    show his true colors with his bad boy ways?
+                </p>
+                <ul>
+                    <li>
+                        <span class="txt-b">Pupularity score :</span>
+                        <span>165565</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Categories :</span>
+                        <span>Drama, Adventure, Cosmos</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Author :</span>
+                        <span>KISHIMOTO Masashi</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Date :</span>
+                        <span>1999</span>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="cell-2 c-12-m align-center">
+                <figure>
+                    <img class="responsive-img"
+                         src="https://cdn.mangaeden.com/mangasimg/d1/d1cd664cefc4d19ec99603983d4e0b934e8bce91c3fccda3914ac029.png"
+                         alt="Manga Tag">
+                </figure>
+            </div>
+        </div>
+
+        <!-- @@@@@ RESULT 2 @@@@@ -->
+
+        <div class="row flex-y-center flex-x-center hover-bg-clouds transition-3 border-bottom border-silver APP_clickable_row">
+            <div class="cell-2 c-12-m  txt-size-medium APP_font_obelix align-center">
+                <span class="color-orange">#</span>
+                <span>1</span>
+            </div>
+            <div class="cell-8 flex-item-order-2-m">
+                <h3 class="align-center-s">Naruto</h3>
+                <p>
+                    There is fighting at the high school due to a power struggle for control. The granddaughter of the
+                    chief director requests help from the Airin Dreamdo fighting style genius. Will he help? Or will he
+                    show his true colors with his bad boy ways?
+                </p>
+                <ul>
+                    <li>
+                        <span class="txt-b">Pupularity score :</span>
+                        <span>165565</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Categories :</span>
+                        <span>Drama, Adventure, Cosmos</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Author :</span>
+                        <span>KISHIMOTO Masashi</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Date :</span>
+                        <span>1999</span>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="cell-2 c-12-m align-center">
+                <figure>
+                    <img class="responsive-img"
+                         src="https://cdn.mangaeden.com/mangasimg/d1/d1cd664cefc4d19ec99603983d4e0b934e8bce91c3fccda3914ac029.png"
+                         alt="Manga Tag">
+                </figure>
+            </div>
+        </div>
+
+        <!-- ...  -->
+
+
+    </main>
+
+</div>
+
+<!-- @@@ FOOTER @@@ -->
+
+<footer class="row">
+    <div class="cell-12-margin-0 align-center color-silver padding-30 bg-yin">
+        <ul class="list-unstyled list-inline list-separator list-no-separator-s list-block-s">
+            <li>Realized by <span class="color-orange">Habit Jérémy</span> & <span
+                    class="color-orange">Maxime Lainé</span>
+            </li>
+            <li>
+                <a class="txt-i txt-underline hover-color-asbestos" href="http://www.mangaeden.com/api/" target="_blank"
+                   title="Link to the MangaEden API">
+                    MangaEden API
+                </a>
+            </li>
+            <li>M2 - DNR2i</li>
+            <li>2017/2018</li>
+        </ul>
+    </div>
+</footer>
+
+
+</body>
+</html>

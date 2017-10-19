@@ -2,7 +2,9 @@
 
 ## API
 
-### GET /animes/naruto
+### GET /animes/:query
+Send a list of animes with "like" operator on the query 
+
 ```
 {
     "anime": [
@@ -111,3 +113,17 @@
     ]
 }
 ```
+
+### GET /animes/:id
+Send a unique anime
+
+```
+[...]
+```
+
+### GET /animes/suggestion/:id
+Take an anime id parameter, return anime suggestions
+```
+[...]
+``` 
+

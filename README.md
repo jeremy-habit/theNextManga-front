@@ -2,7 +2,7 @@
 
 ## API
 
-### GET /animes/:query
+### GET /animes/name/:query
 Send a list of animes with "like" operator on the query 
 
 ```
@@ -56,12 +56,29 @@ Send a list of animes with "like" operator on the query
 Send a unique anime
 
 ```
-[...]
+{
+    "anime": {
+        "_id": "59de144667a1add2cf6cab9e",
+        "h": 1196,
+        "c": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Sci-fi",
+            "Supernatural"
+        ],
+        "im": "ad/ad8dbe2c909de99899f1015a360f75e3ced31023672d6ff0d2b7547c.jpg",
+        "t": "Flower Dream"
+    }
+}
 ```
 
 ### GET /animes/suggestion/:id
 Take an anime id parameter, return anime suggestions
+
 ```
 [...]
 ``` 
+
+todo: aggregation with mongoose + $match 
 

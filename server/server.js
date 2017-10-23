@@ -28,10 +28,6 @@ app.get('/animes/:id', (req, res) => {
   })
 })
 
-
-
-
-
 app.listen(port, () => {
   console.log(`Starting on ${port}`)
 })

@@ -77,8 +77,13 @@ Send a unique anime
 Take an anime id parameter, return anime suggestions
 
 ```
+c_common: []
 [...]
 ``` 
 
-todo: aggregation with mongoose + $match 
+todo: 
+aggregation with mongoose + $match 
+
+http://www.mangaeden.com/api/manga/:id-api description-artist-author-chapters_len
+
 

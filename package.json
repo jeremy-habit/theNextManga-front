@@ -14,7 +14,8 @@
     "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
     "mongoose": "^4.12.1",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "sync-request": "^4.1.0"
   },
   "author": "",
   "license": "ISC"

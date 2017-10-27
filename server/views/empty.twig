@@ -1,1 +1,20 @@
-empty
+{% extends "base.twig" %}
+{% block body %}
+    <div class="row flex-y-center flex-x-around">
+        <div class="cell-4 offset-1 hide-s anim-forward">
+            <figure>
+                <img class="responsive-img" src="../public/img/kakashi%20chibi1.png" alt="Kakashi chibi png"/>
+            </figure>
+        </div>
+        <div class="cell- anim-backward padding round-50 align-center">
+            <h1 class="APP_font_obelix margin-50-bottom txt-size-giant">
+                <span>Oups</span>
+                <span class="color-orange">!</span>
+            </h1>
+            <h3 class="color-orange txt-size-big">No results found ...</h3>
+            <p class="align-center">
+                Get more luck with differents keywords !
+            </p>
+        </div>
+    </div>
+{% endblock %}

@@ -7,7 +7,7 @@ window.onload = function () {
   /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
   let mangas = [
-    /*{
+    {
       "a": "noblesse",
       "c": [
         "Action",
@@ -192,7 +192,7 @@ window.onload = function () {
       "ld": 1330718878.0,
       "s": 2,
       "t": "Petshop of Horrors"
-    },*/
+    },
     {
       "a": "kidou-senshi-gundam-climax-u.c",
       "c": [
@@ -229,9 +229,6 @@ window.onload = function () {
   let verySimilar = "pumpkin"
   /* calcul de la somme des hits */
   let hitsSum = 0
-  for (let i = 0; i < mangas.length; i++) {
-    hitsSum += mangas[i].h
-  }
 
   d3.select("#squareALotSimilar").classed("bg-" + aLotSimilar, true)
   d3.select("#squareSimilar").classed("bg-" + similar, true)
@@ -295,156 +292,168 @@ window.onload = function () {
   }
 
 
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* @@@ Crée l'élément SVG @@@ */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+  let init = function () {
 
-  let svg = d3.select("#suggestionContainer")
-      .insert("svg")
-      .attr("width", w)
-      .attr("height", h)
-      .attr("class", "overflow")
+    for (let i = 0; i < mangas.length; i++) {
+      hitsSum += mangas[i].h
+    }
 
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* @@@ Ajout des barres selon les datas @@@ */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* @@@ Crée l'élément SVG @@@ */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-  svg.selectAll("rect")
-      .data(mangas)
-      .enter()
-      .append("rect")
-      .attr("class", function (manga, i) {
-        return "color-" + getSimilarityColor(manga)
-      })
-      .attr("x", function (manga, i) {
-        return i * (w / mangas.length)
-      })
-      .attr("y", function (manga) {
-        return h - getBarHeight(manga)
-      })
-      .attr("width", w / mangas.length - barPadding)
-      .attr("height", function (manga) {
-        return getBarHeight(manga)
-      })
+    let svg = d3.select("#suggestionContainer")
+        .insert("svg")
+        .attr("width", w)
+        .attr("height", h)
+        .attr("class", "overflow")
 
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* @@@ Création du tooltip @@@ */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* @@@ Ajout des barres selon les datas @@@ */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    console.log(svg)
+    svg.selectAll("rect")
+        .data(mangas)
+        .enter()
+        .append("rect")
+        .attr("class", function (manga, i) {
+          return "color-" + getSimilarityColor(manga)
+        })
+        .attr("x", function (manga, i) {
+          return i * (w / mangas.length)
+        })
+        .attr("y", function (manga) {
+          return h - getBarHeight(manga)
+        })
+        .attr("width", w / mangas.length - barPadding)
+        .attr("height", function (manga) {
+          return getBarHeight(manga)
+        })
 
-  let tip = d3.tip()
-      .attr("class", "d3-tip")
-      .offset([-10, 0])
-      .html(function (manga) {
-        let similarityColor = getSimilarityColor(manga)
-        let res = "<div class='border border-" + similarityColor + " round bg-yang anim-zoom very-fast' style='min-width: 300px'>"
-        res += "<h4 class='margin-0 bg-" + similarityColor + " color-yang padding'>" + manga.t + "</h4>"
-        res += "<ul class='list-unstyled padding'>"
-        for (let category of manga.c) {
-          if ((manga.c_common.indexOf(category) > -1)) {
-            res += "<li class='color-" + similarityColor + " txt-b'>"
-          } else {
-            res += "<li>"
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* @@@ Création du tooltip @@@ */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+    let tip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([-10, 0])
+        .html(function (manga) {
+          let similarityColor = getSimilarityColor(manga)
+          let res = "<div class='border border-" + similarityColor + " round bg-yang anim-zoom very-fast' style='min-width: 300px'>"
+          res += "<h4 class='margin-0 bg-" + similarityColor + " color-yang padding'>" + manga.t + "</h4>"
+          res += "<ul class='list-unstyled padding'>"
+          for (let category of manga.c) {
+            if ((manga.c_common.indexOf(category) > -1)) {
+              res += "<li class='color-" + similarityColor + " txt-b'>"
+            } else {
+              res += "<li>"
+            }
+            res += category + "</li>"
           }
-          res += category + "</li>"
-        }
-        res += "</ul>"
-        res += "</div>"
-        return res
-      })
+          res += "</ul>"
+          res += "</div>"
+          return res
+        })
 
-  svg.call(tip)
+    svg.call(tip)
 
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* @@@ Ajout des affiches du manga au dessus des bars @@@ */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* @@@ Ajout des affiches du manga au dessus des bars @@@ */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-  svg.selectAll("image").data(mangas)
-      .enter()
-      .append("svg:image")
-      .attr("class", "cursor-pointer")
-      .attr("width", w / mangas.length - barPadding)
-      .attr("height", 222)
-      .attr("x", function (manga, i) {
-        return i * (w / mangas.length)
-      })
-      .attr("y", function (manga) {
-        /*return (h - getBarHeight(manga)) - d3.select(this).node().getBoundingClientRect().height*/
-        return 0
-      })
-      .attr("xlink:href", function (manga) {
-        if (manga.im !== null) {
-          return "https://cdn.mangaeden.com/mangasimg/" + manga.im
-        } else {
-          return "http://via.placeholder.com/222x350"
-        }
-      })
-      .on("mouseover", function (manga, i) {
-        over(this, manga)
-      })
-      .on("mouseout", function (manga, i) {
-        out(this)
-      })
-      .on("click", function (manga, i) {
-        /* ajax  :recharge le graph et les détails selon le manga cliqué */
-        alert("google")
-      })
+    svg.selectAll("image").data(mangas)
+        .enter()
+        .append("svg:image")
+        .attr("class", "cursor-pointer")
+        .attr("width", w / mangas.length - barPadding)
+        .attr("height", 222)
+        .attr("x", function (manga, i) {
+          return i * (w / mangas.length)
+        })
+        .attr("y", function (manga) {
+          /*return (h - getBarHeight(manga)) - d3.select(this).node().getBoundingClientRect().height*/
+          return 0
+        })
+        .attr("xlink:href", function (manga) {
+          if (manga.im !== null) {
+            return "https://cdn.mangaeden.com/mangasimg/" + manga.im
+          } else {
+            return "http://via.placeholder.com/222x350"
+          }
+        })
+        .on("mouseover", function (manga, i) {
+          over(this, manga)
+        })
+        .on("mouseout", function (manga, i) {
+          out(this)
+        })
+        .on("click", function (manga, i) {
+          /* ajax  :recharge le graph et les détails selon le manga cliqué */
+          alert("google")
+        })
 
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* @@@ Ajout des scores de popularité @@@ */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* @@@ Ajout des scores de popularité @@@ */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
 
-  svg.selectAll("viewsScore")
-      .data(mangas)
-      .enter()
-      .append("text")
-      .text(function (manga) {
-        return "~ " + abbreviateNumber(manga.h)
-      })
-      .attr("x", function (manga, i) {
-        return i * (w / mangas.length) + 5
-      })
-      .attr("y", function (manga) {
-        return (h - getBarHeight(manga)) - d3.select(this).node().getBoundingClientRect().height + 15
-      })
-  /* .attr("width", function (manga) {
-     let rectX = d3.transform(d3.select("rect").node()attr("transform")).translate[0]
-     console.log(rectX)
-     let recttW = d3.select("rect").node().getBoundingClientRect().width
-     let wText = this.getComputedTextLength()
-   })
-*/
+    svg.selectAll("viewsScore")
+        .data(mangas)
+        .enter()
+        .append("text")
+        .text(function (manga) {
+          return "~ " + abbreviateNumber(manga.h)
+        })
+        .attr("x", function (manga, i) {
+          return i * (w / mangas.length) + 5
+        })
+        .attr("y", function (manga) {
+          return (h - getBarHeight(manga)) - d3.select(this).node().getBoundingClientRect().height + 15
+        })
+    /* .attr("width", function (manga) {
+       let rectX = d3.transform(d3.select("rect").node()attr("transform")).translate[0]
+       console.log(rectX)
+       let recttW = d3.select("rect").node().getBoundingClientRect().width
+       let wText = this.getComputedTextLength()
+     })
+  */
 
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* @@@ Nombre de catégories en commun @@@ */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* @@@ Nombre de catégories en commun @@@ */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-  svg.selectAll("nbCommonCate")
-      .data(mangas)
-      .enter()
-      .append("text")
-      .text(function (manga) {
-        return manga.c_common.length
-      })
-      .attr("x", function (manga, i) {
-        return i * (w / mangas.length) + 5
-      })
-      .attr("y", function (manga) {
-        return (h - getBarHeight(manga)) - d3.select(this).node().getBoundingClientRect().height + 50
-      })
-      .attr("font-size", "32px")
-      .attr("fill", "white")
+    svg.selectAll("nbCommonCate")
+        .data(mangas)
+        .enter()
+        .append("text")
+        .text(function (manga) {
+          return manga.c_common.length
+        })
+        .attr("x", function (manga, i) {
+          return i * (w / mangas.length) + 5
+        })
+        .attr("y", function (manga) {
+          return (h - getBarHeight(manga)) - d3.select(this).node().getBoundingClientRect().height + 50
+        })
+        .attr("font-size", "32px")
+        .attr("fill", "white")
+
+  }
+
+
+  init()
+
 
 }

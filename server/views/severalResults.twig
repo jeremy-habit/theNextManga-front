@@ -1,38 +1,44 @@
-{% for anime in animes %}
-    <div class="row flex-y-center flex-x-center hover-bg-clouds transition-3 border-bottom border-silver APP_clickable_row">
-        <div class="cell-2 c-12-m  txt-size-medium APP_font_obelix align-center">
-            <span class="color-orange">#</span>
-            <span>{{ loop.index }}</span>
-        </div>
-        <div class="cell-8 flex-item-order-2-m">
-            <h3 class="align-center-s">{{ anime.t }}</h3>
-            <p>{{ anime.description }}</p>
-            <ul>
-                <li>
-                    <span class="txt-b">Pupularity score :</span>
-                    <span>{{ anime.h }}</span>
-                </li>
-                <li>
-                    <span class="txt-b">Categories :</span>
-                    <span>{% for category in anime.c %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
-                </li>
-                <li>
-                    <span class="txt-b">Author :</span>
-                    <span>{{ anime.author }}</span>
-                </li>
-                <li>
-                    <span class="txt-b">Realesed :</span>
-                    <span>{{ anime.released }}</span>
-                </li>
-            </ul>
+{% extends "base.twig" %}
 
+{% block body %}
+{% for anime in animes %}
+    <a href="/animes/suggestion/{{ anime._id }}">
+        <div class="row flex-y-center flex-x-center hover-bg-clouds transition-3 border-bottom border-silver APP_clickable_row">
+            <div class="cell-2 c-12-m  txt-size-medium APP_font_obelix align-center">
+                <span class="color-orange">#</span>
+                <span>{{ loop.index }}</span>
+            </div>
+            <div class="cell-8 flex-item-order-2-m">
+                <h3 class="align-center-s">{{ anime.t }}</h3>
+                <p>{{ anime.description }}</p>
+                <ul>
+                    <li>
+                        <span class="txt-b">Pupularity score :</span>
+                        <span>{{ anime.h }}</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Categories :</span>
+                        <span>{% for category in anime.c %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Author :</span>
+                        <span>{{ anime.author }}</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Realesed :</span>
+                        <span>{{ anime.released }}</span>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="cell-2 c-12-m align-center">
+                <figure>
+                    <img class="responsive-img"
+                         src="https://cdn.mangaeden.com/mangasimg/{{ anime.im }}"
+                         alt="Manga Tag">
+                </figure>
+            </div>
         </div>
-        <div class="cell-2 c-12-m align-center">
-            <figure>
-                <img class="responsive-img"
-                     src="https://cdn.mangaeden.com/mangasimg/{{ anime.im }}"
-                     alt="Manga Tag">
-            </figure>
-        </div>
-    </div>
+    </a>
 {% endfor %}
+{% endblock %}

@@ -1,36 +1,36 @@
- <section class="row-column-s shaded-box margin-50-bottom bg-clouds">
-        <div class="cell-3 align-center">
-            <figure>
-                <img class="responsive-img border border-silver"
-                     src="https://cdn.mangaeden.com/mangasimg{{ anime.im }}"
-                     alt="Manga Tag">
-            </figure>
-        </div>
-        <div class="cell-9-margin-0 bg-yang padding">
-            <h1 class="align-center-s txt-unset txt-size-big margin-0-top">{{ anime.t }}</h1>
-            <p class="txt-i">{{ anime.description }}</p>
-            <ul>
-                <li>
-                    <span class="txt-b">Views/Popularity score :</span>
-                    <span>{{ anime.h }}</span>
-                </li>
-                <li>
-                    <span class="txt-b">Categories :</span>
-                    <span>{% for category in anime.c %}{{ category }}{% if not loop.last %}{% endfor %}</span>
-                </li>
-                <li>
-                    <span class="txt-b">Author :</span>
-                    <span>{{ anime.author }}</span>
-                </li>
-                <li>
-                    <span class="txt-b">Realesed :</span>
-                    <span>{{ anime.released }}</span>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- SUGGESTION -->
+{% extends "base.twig" %}
+{% block body %}
+        <section class="row-column-s shaded-box margin-50-bottom bg-clouds flex-y-center">
+            <div class="cell-3 align-center">
+                <figure>
+                    <img class="responsive-img border border-silver"
+                         src="https://cdn.mangaeden.com/mangasimg/{{ animeSearched.im }}"
+                         alt="Manga Tag">
+                </figure>
+            </div>
+            <div class="cell-9-margin-0 bg-yang padding">
+                <h1 class="align-center-s txt-unset txt-size-big margin-0-top">{{ animeSearched.t }}</h1>
+                <p class="txt-i">{{ animeSearched.description }}</p>
+                <ul>
+                    <li>
+                        <span class="txt-b">Views/Popularity score :</span>
+                        <span>{{ animeSearched.h }}</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Categories :</span>
+                        <span>{% for category in animeSearched.c %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Author :</span>
+                        <span>{{ animeSearched.author }}</span>
+                    </li>
+                    <li>
+                        <span class="txt-b">Realesed :</span>
+                        <span>{{ animeSearched.released }}</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
     <section>
         <div class="row">
             <div class="cell-12">
@@ -74,3 +74,12 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+    {% block script %}
+        <script>window.animes = '{{ animes }}'
+        </script>
+        <script type="text/javascript" src="/public/js/vendors/d3.min.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <script type="text/javascript" src="/public/js/script.js"></script>
+    {% endblock %}

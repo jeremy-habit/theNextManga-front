@@ -8,7 +8,9 @@ const {mongoose} = require('./db/mongoose')
 const {Anime} = require('./models/anime')
 
 let app = express()
-app.use(function(req, res, next) {
+
+
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -16,10 +18,24 @@ app.use(function(req, res, next) {
 const port = process.env.PORT
 
 app.use(bodyParser.json()) // set bodyParser middleware
+app.set('views', __dirname + '/views')
+app.set('view engine', 'twig');
+app.set('twig options', {
+  strict_variables: false
+});
 
 app.get('/animes/name/:query', (req, res) => {
-  Anime.find({t: new RegExp(req.params.query, 'i')}).then((anime) => {
-    res.send({anime})
+  Anime.find({t: new RegExp(req.params.query, 'i')}).then((animes) => {
+    console.log(animes)
+    if (animes.length > 0)
+      res.render('severalResults', {animes}, (err, html) => {
+        res.send({content: html})
+      })
+    else {
+      res.render('empty', null, (err, html) => {
+        res.send({content: html})
+      })
+    }
   }).catch((e) => {
     console.log(e)
   })
@@ -46,11 +62,9 @@ app.get('/animes/suggestion/:id', (req, res) => {
       animes = _.orderBy(animes, [(o) => {
         return o.c_common.length
       }], ["desc"])
-      animes = animes.slice(0,9)
-      animes = _.orderBy(animes, ['h'], ['desc'])
+      animes = animes.slice(0, 9)
       res.send({animes})
     })
-
   }).catch((e) => {
     console.log(e)
   })

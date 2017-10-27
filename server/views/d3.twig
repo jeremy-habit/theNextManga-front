@@ -1,0 +1,76 @@
+ <section class="row-column-s shaded-box margin-50-bottom bg-clouds">
+        <div class="cell-3 align-center">
+            <figure>
+                <img class="responsive-img border border-silver"
+                     src="https://cdn.mangaeden.com/mangasimg{{ anime.im }}"
+                     alt="Manga Tag">
+            </figure>
+        </div>
+        <div class="cell-9-margin-0 bg-yang padding">
+            <h1 class="align-center-s txt-unset txt-size-big margin-0-top">{{ anime.t }}</h1>
+            <p class="txt-i">{{ anime.description }}</p>
+            <ul>
+                <li>
+                    <span class="txt-b">Views/Popularity score :</span>
+                    <span>{{ anime.h }}</span>
+                </li>
+                <li>
+                    <span class="txt-b">Categories :</span>
+                    <span>{% for category in anime.c %}{{ category }}{% if not loop.last %}{% endfor %}</span>
+                </li>
+                <li>
+                    <span class="txt-b">Author :</span>
+                    <span>{{ anime.author }}</span>
+                </li>
+                <li>
+                    <span class="txt-b">Realesed :</span>
+                    <span>{{ anime.released }}</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SUGGESTION -->
+    <section>
+        <div class="row">
+            <div class="cell-12">
+                <h1 class="txt-unset txt-size-big">Suggestions</h1>
+            </div>
+        </div>
+
+
+        <div class="row-column-m bg-yin color-yang border border-silver">
+            <div class="cell-12">
+                <h1 class="margin-0 txt-unset">Caption</h1>
+            </div>
+            <div class="cell-4">
+                <h3 class="txt-unset margin-0-top color-concrete">Common categories</h3>
+                <ul class="list-unstyled">
+                    <li class="margin-10-bottom">
+                        <span id="squareALotSimilar" class="square inline block margin-5-right"></span>
+                        <span>Between 1 and 2</span>
+                    </li>
+                    <li class="margin-5-bottom">
+                        <span id="squareSimilar" class="square inline block margin-5-right"></span>
+                        <span>Between 3 and 4</span>
+                    </li>
+                    <li class="margin-5-bottom">
+                        <span id="squareVerySimilar" class="square inline block margin-5-right"></span>
+                        <span>More than 5</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="cell-8">
+                <h3 class="txt-unset margin-0-top color-concrete">Views</h3>
+                <p>The height of a bar represents the popularity of a manga. The more a manga is popular, the more
+                    the bar will be high. There is the views score of the manga above the bar. This score means the
+                    number of hits, of views.</p>
+            </div>
+        </div>
+
+        <div class="row border border-silver border-none-top">
+            <div id="suggestionContainer"
+                 class="cell-12 overflow align-center">
+            </div>
+        </div>
+    </section>

@@ -74,11 +74,32 @@ Send a unique anime
 ```
 
 ### GET /animes/suggestion/:id
-Take an anime id parameter, return anime suggestions
+Take an anime id parameter, return anime suggestions, 10 result max, order by hit
 
 ```
-c_common: []
-[...]
+"animes": [
+        {
+            "_id": "59de144867a1add2cf6d03fa",
+            "h": 60843693,
+            "c": [
+                "Action",
+                "Comedy",
+                "Drama",
+                "Shounen",
+                "Slice of Life",
+                "Sports"
+            ],
+            "im": "6f/6f0b95cb7d04cf4a594e53bd043e4058c328e3d4e32708a45d9e73f4.jpg",
+            "t": "Hajime no Ippo",
+            "i": "4e70ea14c092255ef7004be8",
+            "c_common": [
+                "Comedy",
+                "Shounen",
+                "Slice of Life",
+                "Sports"
+            ]
+        },
+        [...]
 ``` 
 
 todo: 

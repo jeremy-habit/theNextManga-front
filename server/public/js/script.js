@@ -205,7 +205,7 @@ window.onload = function () {
         })
         .on("click", function (manga, i) {
           /* ajax  :recharge le graph et les détails selon le manga cliqué */
-          alert("google")
+          window.location.href = `http://localhost:3000/animes/suggestion/${manga._id}`
         })
 
     /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */

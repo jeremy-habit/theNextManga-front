@@ -60,11 +60,12 @@ app.get('/animes/suggestion/:id', (req, res) => {
       for (let anime of animes) {
         anime.c_common = _.intersection(anime.c, animeSearched.c)
       }
+      animes = _.filter(animes, (anime) => !anime._id.equals(animeSearched._id))
       animes = _.orderBy(animes, [(o) => {
         return o.c_common.length
       }], ["desc"])
       animes = animes.slice(0, 9)
-      res.render('d3', {animes: JSON.stringify(animes), animeSearched })
+      res.render('d3', {animes: JSON.stringify(animes), animeSearched})
     })
   }).catch((e) => {
     console.log(e)

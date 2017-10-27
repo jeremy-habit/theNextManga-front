@@ -1,5 +1,23 @@
 window.onload = function () {
 
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost:3000/animes/suggestion/59de144867a1add2cf6d03fa", true);
+  xhr.onload = function (e) {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log();
+        init(JSON.parse(xhr.responseText).animes)
+      } else {
+        console.error(xhr.statusText);
+      }
+    }
+  };
+  xhr.onerror = function (e) {
+    console.error(xhr.statusText);
+  };
+  xhr.send(null);
+
+
   /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
   /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
   /* @@@ DATAS  @@@ */
@@ -292,7 +310,7 @@ window.onload = function () {
   }
 
 
-  let init = function () {
+  let init = function (mangas) {
 
     for (let i = 0; i < mangas.length; i++) {
       hitsSum += mangas[i].h
@@ -451,9 +469,4 @@ window.onload = function () {
         .attr("fill", "white")
 
   }
-
-
-  init()
-
-
 }

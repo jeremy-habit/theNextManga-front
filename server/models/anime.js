@@ -11,7 +11,8 @@ let AnimeSchema = new mongoose.Schema({
   artist: String,
   author: String,
   chapters_len: Number,
-  released: Number
+  released: Number,
+  c_common: Array
 
 
 })
@@ -20,7 +21,7 @@ AnimeSchema.methods.toJSON = function () { // todo override
   let anime = this
   let animeObject = anime.toObject()
 
-  return _.pick(animeObject, ['_id', 'h', 'c', 'im', 't', 'i'])
+  return _.pick(animeObject, ['_id', 'h', 'c', 'im', 't', 'i', 'c_common'])
 }
 
 

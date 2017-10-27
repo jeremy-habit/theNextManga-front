@@ -28,6 +28,31 @@ app.get('/animes/:id', (req, res) => {
   })
 })
 
+app.get('/animes/suggestion/:id', (req, res) => {
+  Anime.findById(req.params.id).then((AnimeSearched) => {
+    Anime.find({
+      c: {
+        $in: AnimeSearched.c
+      }
+    }).sort({h: 'desc'}).then((animes) => {
+      for (let anime of animes) {
+        anime.c_common = _.intersection(anime.c, AnimeSearched.c)
+      }
+      animes = _.orderBy(animes, [(o) => {
+        return o.c_common.length
+      }], ["desc"])
+      animes = animes.slice(0,9)
+      animes = _.orderBy(animes, ['h'], ['desc'])
+      res.send({animes})
+    })
+
+  }).catch((e) => {
+    console.log(e)
+  })
+
+})
+
+
 app.listen(port, () => {
   console.log(`Starting on ${port}`)
 })

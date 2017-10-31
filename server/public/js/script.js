@@ -83,7 +83,7 @@ window.onload = function () {
 
   /* @@@ fonction : calcul la hauteur d'une barre pour un manga selon ses hits @@@ */
   let getBarHeight = function (manga) {
-    return ((manga.h) / hitsSum ) * 2000
+    return ((manga.h) / hitsSum ) * 1000
   }
 
   let getMaxBarHeight = function (mangas) {

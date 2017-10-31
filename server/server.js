@@ -30,8 +30,7 @@ app.get('/', (req, res) => {
   res.render('')
 })
 app.get('/animes/name', (req, res) => {
-  Anime.find({t: new RegExp(req.query.query, 'i')}).then((animes) => {
-    console.log(animes)
+  Anime.find({t: new RegExp(req.query.query, 'i')}).sort({h:-1}).then((animes) => {
     if (animes.length > 0)
       res.render('severalResults', {animes})
     else {
